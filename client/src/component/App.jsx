@@ -14,6 +14,7 @@ export class App extends React.Component {
     this.getCost = this.getCost.bind(this);
     this.getZipcode = this.getZipcode.bind(this);
   }
+  // CRUD FOR COST TABLE
   getCost (id = 1) {
     fetch(`http://localhost:3002/api/cars/${id}`)
     .then((res) => {
@@ -29,6 +30,55 @@ export class App extends React.Component {
       console.log(err)
   })
   }
+
+  postCost (values) {
+    fetch(`http://localhost:3002/api/cars/`, {
+      method: 'POST',
+      body: JSON.stringify(values),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  putCost ( id = 1, values ) {
+    fetch(`http://localhost:3002/api/cars${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(values),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
+  deleteCost ( id = 1 ) {
+    fetch(`http://localhost:3002/api/cars${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response); 
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  //CRUD FOR ZIP CODE TABLE
   getZipcode (zipcode = 60030) {
       fetch(`http://localhost:3002/api/location/${zipcode}`, {
         headers: {
@@ -51,6 +101,55 @@ export class App extends React.Component {
         console.log(err)
     })
   }
+  
+  postZipcode (data) {
+    fetch(`http://localhost:3002/api/location/`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
+  putZipcode ( zipcode = 60030, data ) {
+    fetch(`http://localhost:3002/api/location/${zipcode}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+  deleteZipcode ( zipcode = 60030 ) {
+    fetch(`http://localhost:3002/api/location/${zipcode}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
+
   componentDidMount() {
     this.getCost(1)
     //this.getZipcode(60030)
