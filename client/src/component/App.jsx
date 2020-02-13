@@ -87,7 +87,14 @@ export class App extends React.Component {
   postZipcode (data) {
     fetch(`http://localhost:3002/api/location/`, {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        data: {
+          zipcode: data,
+          taxes: taxes,
+          fees: fees,
+          rates: rates}
+        
+      }),
       headers: {
         'Content-type': 'application/json'
       }
