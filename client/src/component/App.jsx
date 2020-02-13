@@ -15,6 +15,25 @@ export class App extends React.Component {
     this.getZipcode = this.getZipcode.bind(this);
   }
   // CRUD FOR COST TABLE
+  postCost (values) {
+    console.log(values)
+    fetch(`http://localhost:3002/api/cars/`, {
+      method: 'POST',
+      body: JSON.stringify({
+        cost: values
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+  }
+
   getCost (id = 1) {
     fetch(`http://localhost:3002/api/cars/${id}`)
     .then((res) => {
@@ -31,26 +50,12 @@ export class App extends React.Component {
   })
   }
 
-  postCost (values) {
-    fetch(`http://localhost:3002/api/cars/`, {
-      method: 'POST',
-      body: JSON.stringify(values),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }
-
-  putCost ( id = 1, values ) {
-    fetch(`http://localhost:3002/api/cars${id}`, {
+  putCost ( id = 6, values ) {
+    fetch(`http://localhost:3002/api/cars/${id}`, {
       method: 'PUT',
-      body: JSON.stringify(values),
+      body: JSON.stringify({
+        cost: values
+      }),
       headers: {
         'Content-type': 'application/json'
       }
@@ -79,29 +84,6 @@ export class App extends React.Component {
   }
 
   //CRUD FOR ZIP CODE TABLE
-  getZipcode (zipcode = 60030) {
-      fetch(`http://localhost:3002/api/location/${zipcode}`, {
-        headers: {
-          'Content-Type': 'application/json'
-        },  
-        params: JSON.stringify(zipcode)
-      })
-      .then((res) => {
-        return res.json()
-    })
-    .then((data)=>{
-      console.log('zipcode data', data)
-      this.setState({
-            taxes: data.creditScore[0].taxes,
-            fees: data.creditScore[0].fees,
-            rate: data.creditScore[0].rate
-      })
-    })
-    .catch(err =>{
-        console.log(err)
-    })
-  }
-  
   postZipcode (data) {
     fetch(`http://localhost:3002/api/location/`, {
       method: 'POST',
@@ -117,6 +99,29 @@ export class App extends React.Component {
       console.log(error)
     })
   }
+
+  getZipcode (zipcode = 60030) {
+    fetch(`http://localhost:3002/api/location/${zipcode}`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },  
+      params: JSON.stringify(zipcode)
+    })
+    .then((res) => {
+      return res.json()
+  })
+  .then((data)=>{
+    console.log('zipcode data', data)
+    this.setState({
+          taxes: data.creditScore[0].taxes,
+          fees: data.creditScore[0].fees,
+          rate: data.creditScore[0].rate
+    })
+  })
+  .catch(err =>{
+      console.log(err)
+  })
+}
 
   putZipcode ( zipcode = 60030, data ) {
     fetch(`http://localhost:3002/api/location/${zipcode}`, {
