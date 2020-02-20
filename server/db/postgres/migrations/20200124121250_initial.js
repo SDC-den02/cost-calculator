@@ -2,7 +2,9 @@ exports.up = function(knex, Promise) {
     return knex.schema.createTable('location', (table) => {
         table.increments('id').primary();
         table.integer('zipcode').notNullable();
-        table.decimal('creditscore').notNullable();
+        table.integer('taxes').notNullable();
+        table.integer('fees').notNullable();
+        table.decimal('rate').notNullable();
     })
 };
 
