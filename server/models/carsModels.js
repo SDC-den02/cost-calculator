@@ -1,4 +1,4 @@
-const connection = require('../connections/costCalculatorConnections.js');
+const connection = require('../db/mysql/connections/costCalculatorConnections.js');
 
 const postCarPrice = (data, callback) => {
     // console.log('this is data in models', data)

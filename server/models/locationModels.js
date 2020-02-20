@@ -1,4 +1,4 @@
-const connection = require('../connections/costCalculatorConnections.js');
+const connection = require('../db/mysql/connections/costCalculatorConnections.js');
 
 const postZipcodes = (data, callback) => {
     let queryCommand = `INSERT INTO location (zipcode, taxes, fees, rate) VALUES (${data.zipcode}, ${data.taxes}, ${data.fees}, ${data.rates})`;
