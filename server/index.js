@@ -6,6 +6,7 @@ const app = express();
 const carsRoutes = require('./routes/carsRoutes.js');
 const locationRoutes = require('./routes/locationRoutes.js');
 const cors = require('cors');
+const { Pool, Client } = require('pg');
 
 app.use(express.json())
 app.use(cors())
