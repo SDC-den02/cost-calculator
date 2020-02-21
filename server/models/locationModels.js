@@ -1,6 +1,8 @@
-const connection = require('../db/mysql/connections/costCalculatorConnections.js');
+const knex = require('../db/postgres/connection/connection');
 
-const postZipcodes = (data, callback) => {
+// const connection = require('../db/mysql/connections/costCalculatorConnections.js');
+
+/* const postZipcodes = (data, callback) => {
     let queryCommand = `INSERT INTO location (zipcode, taxes, fees, rate) VALUES (${data.zipcode}, ${data.taxes}, ${data.fees}, ${data.rates})`;
     connection.query(queryCommand,(error, result, field) => {
         if (error) { 
@@ -48,11 +50,27 @@ const deleteZipcodes = (zipcode, callback) => {
         }
     })
 }
-
+*/
 
 module.exports = {
-    postZipcodes,
-    getZipcodes,
-    updateZipcodes,
-    deleteZipcodes    
+    postZipcodes(data) {
+       return knex('location')
+        .insert({zipcode: data.zipcode, taxes: data.taxes, fees: data.fees, rate: data.rate}, '*');
+    },
+    getZipcodes(zipcode) {
+       return knex('location')
+        .where('zipcode', zipcode)
+        .first();
+    },
+    updateZipcodes(zipcode, data) {
+        console.log('Inside of controller ', data.rate)
+       return knex('location')
+        .where('zipcode', zipcode)
+        .update({rate: data.rate});
+    },
+    deleteZipcodes(zipcode) {
+       return knex('location')
+        .where('zipcode', zipcode)
+        .del();
+    } 
 }
