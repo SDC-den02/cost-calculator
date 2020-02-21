@@ -1,3 +1,6 @@
+const knex = require('../db/postgres/connection/connection');
+
+/*
 const connection = require('../db/mysql/connections/costCalculatorConnections.js');
 
 const postCarPrice = (data, callback) => {
@@ -52,10 +55,17 @@ const deleteCarPrice = (id, callback) => {
 }
 
 
-
+*/
 module.exports = {
-    postCarPrice,
-    readCarPrice,
-    updateCarPrice,
-    deleteCarPrice
+    postCarPrice(data) {
+        return knex('cars')
+            .insert({price: data}, '*');
+    },
+    readCarPrice(id) {
+        return knex('cars')
+            .where('id', id)
+            .first();
+    },
+    // updateCarPrice,
+    // deleteCarPrice
 }
