@@ -1,61 +1,38 @@
-const connection = require('../connections/costCalculatorConnections.js');
-
-const postCarPrice = (data, callback) => {
-    // console.log('this is data in models', data)
-    let queryCommand = `INSERT INTO cars (cost) VALUES (${data})`;
-    connection.query(queryCommand, (error, result, field) => {
-        if (error) {
-            console.log(error)
-            callback(error)
-        } else { 
-            callback(null, result)
-        }
-    })
-}
-
-const readCarPrice = (id, callback) => {
-    const queryText = `SELECT cars FROM cost WHERE id = ${id}`;
-    connection.query(queryText, (error, result, field) => {
-        if (error) {
-            console.log(error)
-            callback(error)
-        } else {
-            //error first... dont forget.
-            callback(null, result)
-        }
-    })
-}
-
-const updateCarPrice = (id, data, callback) => {
-    console.log('In models data is ', data)
-    let queryCommand = `UPDATE cars SET cost = ${data} WHERE id = ${id}`;
-    connection.query(queryCommand, (error, result, field) => {
-        if (error) {
-            console.log(error)
-            callback(error)
-        } else {
-            callback(null, result);
-        }
-    })
-}
-
-const deleteCarPrice = (id, callback) => {
-    let queryCommand = `DELETE FROM cars WHERE id = ${id}`;
-    connection.query(queryCommand, (error, result, field) => {
-        if (error) {
-            console.log(error)
-            callback(error)
-        } else {
-            callback(null, result);
-        }
-    })
-}
-
-
+const session = require('../db/neo4j/connection');
+// n is a variable, it is used as a references to a node
+//(ACTION(var: Label) {parameter: paramValue})
+// CREATE doesn't need a return
+// MATCH finds a property. With SET it updates it
 
 module.exports = {
-    postCarPrice,
-    readCarPrice,
-    updateCarPrice,
-    deleteCarPrice
+    postCarPrice(data) {
+        session
+            .run('CREATE(n:Price {price:{priceParam}}) RETURN n.price', {priceParam})
+            .then()
+            .catch()
+    },
+    readCarPrice(id) {
+        session
+            .run('MATCH(n:Id) RETURN n LIMIT 5')
+            .then((result) => {
+                result.records.forEach((record) => {
+                    console.log(record._fields[0].properties);
+                })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        console.log('IT WORKS!');
+    },
+    updateCarPrice() {
+        session
+            .run('MATCH(n:')
+            .then()
+            .catch()
+    },
+    deleteCarPrice(){
+        session
+            .run('MATCH(n:')
+            .then()
+            .catch()
 }

@@ -1,4 +1,4 @@
-const connection = require('../connections/costCalculatorConnections.js');
+const connection = require('../db/neo4j/connection');
 
 const postZipcodes = (data, callback) => {
     let queryCommand = `INSERT INTO location (zipcode, taxes, fees, rate) VALUES (${data.zipcode}, ${data.taxes}, ${data.fees}, ${data.rates})`;
