@@ -1,5 +1,7 @@
 const connection = require('../connections/costCalculatorConnections.js');
+const Car = require('../db/mongo/Car');
 
+/*
 const postCarPrice = (data, callback) => {
     // console.log('this is data in models', data)
     let queryCommand = `INSERT INTO cars (cost) VALUES (${data})`;
@@ -50,12 +52,21 @@ const deleteCarPrice = (id, callback) => {
         }
     })
 }
-
+*/
 
 
 module.exports = {
-    postCarPrice,
-    readCarPrice,
+    postCarPrice(data) {
+        console.log('this is data in models', data);
+        db.collection('cars').insertOne(data)
+        .then((data) => {
+            console.log(`Added new price of ${data}`)
+        })
+        .catch((error) => {
+            console.log(error)
+        })         
+    },
+    /*readCarPrice,
     updateCarPrice,
-    deleteCarPrice
+    deleteCarPrice*/
 }

@@ -2,16 +2,16 @@ const model = require('../models/carsModels.js');
 
 const postCars = (req, res, next) => {
   console.log('This is post ', req.body.cost);
-  model.postCarPrice(req.body.cost, (error, result) => {
-    if (error) {
-      console.log(error)
-      res.status(400).send(error)
-    } else {
+  model.postCarPrice(req.body.cost)
+    .then((result) => {
       console.log(`Cost has been added`)
       console.log(result)
       res.status(200).json({})
-    }
-  })
+    })
+    .catch((error) => {
+      console.log(error)
+      res.status(400).send(error)
+    });
 }
 
 const getCars = (req, res, next) => {
@@ -25,7 +25,7 @@ const getCars = (req, res, next) => {
     }
   })
 }
-
+/*
 const updateCars = (req, res, next) => {
   console.log('This is update ', req.body.cost);
   model.updateCarPrice(req.params.id, req.body.cost, (error, result) => {
@@ -49,11 +49,11 @@ const deleteCars = (req, res, next) => {
     }
   })
 }
-
+*/
 
 module.exports = {
   postCars,
-  getCars,
-  updateCars,
-  deleteCars
+  getCars
+  // updateCars,
+  // deleteCars
 }

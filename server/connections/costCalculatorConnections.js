@@ -1,18 +1,18 @@
-const mysql = require('mysql');
+const mongoose = require('mongoose');
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'securepassword',
-  database: 'cost_calculator'
-})
+var connection = function(){
+  // database connection port
+  mongoose.connect('mongodb://localhost:27017/cost-calculator', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+  
+  const db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'connection error:'));
+  db.once('open', () => {
+    console.log('we\'re connected');
+  })
 
-connection.connect((err)=>{
-  if (err) {
-    console.error('error connecting:' + err.stack)
-    return
-  }
-  console.log('Connected to as id: ' + connection.threadId)
-});
+}
 
 module.exports = connection;
