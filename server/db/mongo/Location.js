@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Scehma;
+const Schema = mongoose.Schema;
 
 var LocationSchema = new Schema ({
     zipcode: {type: Number, default: 0},
