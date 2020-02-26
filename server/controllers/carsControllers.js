@@ -1,11 +1,11 @@
 const model = require('../models/carsModels.js');
 
 const postCars = (req, res, next) => {
-  console.log('This is post ', req.body.cost);
-  model.postCarPrice(req.body.cost)
-    .then((result) => {
+  console.log('This is post ', req.body.price);
+  model.postCarPrice(req.body.price)
+    .then(() => {
       console.log(`Cost has been added`)
-      console.log(result)
+      console.log()
       res.status(200).json({})
     })
     .catch((error) => {

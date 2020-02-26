@@ -1,6 +1,17 @@
-const connection = require('../connections/costCalculatorConnections.js');
 const Car = require('../db/mongo/Car');
+const mongoose = require('mongoose');
 
+// database connection port
+mongoose.connect('mongodb://localhost:27017/cost-calculator', {
+useNewUrlParser: true,
+useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+console.log('we\'re connected');
+})
 /*
 const postCarPrice = (data, callback) => {
     // console.log('this is data in models', data)
@@ -58,13 +69,15 @@ const deleteCarPrice = (id, callback) => {
 module.exports = {
     postCarPrice(data) {
         console.log('this is data in models', data);
-        db.collection('cars').insertOne(data)
+        var newCar = new Car({'price': data });
+        console.log('This is newCar ', newCar);
+        newCar.save() // change to mongoose format
         .then((data) => {
             console.log(`Added new price of ${data}`)
         })
         .catch((error) => {
             console.log(error)
-        })         
+        });
     },
     /*readCarPrice,
     updateCarPrice,
