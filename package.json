@@ -47,7 +47,8 @@
   "scripts": {
     "seed": "node server/db/mongo/seed.js",
     "react-dev": "webpack -d --watch",
-    "start": "nodemon server/index.js"
+    "start-dev": "nodemon server/index.js",
+    "start": "node server/index.js"
   },
   "repository": {
     "type": "git",
