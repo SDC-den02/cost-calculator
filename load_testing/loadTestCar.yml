@@ -1,0 +1,16 @@
+config:
+  target: 'http://localhost:3002'
+  phases:
+    - duration: 30
+      arrivalRate: 1000
+  variables:
+    productIds:
+      - [1, 2, 3]
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - get:
+        url: "/api/cars/{{ $loopElement }}"
+    over: productIds
