@@ -50,7 +50,6 @@ const deleteCars = (req, res, next) => {
   }); 
 }
 
-
 module.exports = {
   postCars,
   getCars,

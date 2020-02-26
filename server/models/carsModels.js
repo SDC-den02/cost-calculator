@@ -1,5 +1,5 @@
-const Car = require('../db/mongo/Car');
 const mongoose = require('mongoose');
+const Car = require('../db/mongo/Car');
 
 mongoose.connect('mongodb://localhost:27017/cost-calculator', {
     useNewUrlParser: true,
@@ -17,7 +17,7 @@ module.exports = {
     postCarPrice(data) {
         console.log('this is data in models', data);
         var newCar = new Car({'price': data });
-        return newCar.save() // changed to mongoose format
+        return newCar.save() // changed to mongoose format instead of mongoDB library
         .then((data) => {
             console.log(`Added new price of ${data}`)
         })
