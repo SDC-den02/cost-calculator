@@ -1,6 +1,6 @@
 //add this require to ensure .env file works
 require('dotenv').config();
-
+require('newrelic');
 const express = require('express');
 const app = express();
 const carsRoutes = require('./routes/carsRoutes.js');

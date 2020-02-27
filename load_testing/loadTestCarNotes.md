@@ -55,7 +55,7 @@ Summary report @ 16:23:00(-0700) 2020-02-26
     ECONNREFUSED: 8590
 
 ## duration: 30, arrivalRate: 1000
-    All virtual users finished
+All virtual users finished
 Summary report @ 16:21:07(-0700) 2020-02-26
   Scenarios launched:  30000
   Scenarios completed: 12811
