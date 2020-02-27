@@ -1,5 +1,5 @@
-#POSTGRES#
-##duration: 30, arrivalRate: 10##
+# POSTGRES
+## duration: 30, arrivalRate: 10
 All virtual users finished
 Summary report @ 16:44:39(-0700) 2020-02-26
   Scenarios launched:  300
@@ -18,7 +18,7 @@ Summary report @ 16:44:39(-0700) 2020-02-26
     400: 300
 
 
-##duration: 30, arrivalRate: 100##
+## duration: 30, arrivalRate: 100
 All virtual users finished
 Summary report @ 16:43:07(-0700) 2020-02-26
   Scenarios launched:  3000
@@ -36,7 +36,7 @@ Summary report @ 16:43:07(-0700) 2020-02-26
   Codes:
     400: 3000
 
-##duration: 30, arrivalRate: 500##
+## duration: 30, arrivalRate: 500
 All virtual users finished
 Summary report @ 16:50:34(-0700) 2020-02-26
   Scenarios launched:  15000
@@ -54,7 +54,7 @@ Summary report @ 16:50:34(-0700) 2020-02-26
   Codes:
     400: 15000
 
-##duration: 30, arrivalRate: 1000##
+## duration: 30, arrivalRate: 1000
 All virtual users finished
 Summary report @ 16:54:28(-0700) 2020-02-26
   Scenarios launched:  30000
