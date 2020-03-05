@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Car = require('../db/mongo/Car');
 
-mongoose.connect('mongodb://localhost:27017/cost-calculator', {
+mongoose.connect('172.17.0.2/cost-calculator', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false  

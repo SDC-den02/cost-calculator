@@ -15,6 +15,6 @@ app.use(express.static('client/dist'))
 app.use('/api/cars', carsRoutes);
 app.use('/api/location', locationRoutes)
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, ()=>{ console.log(`server running on PORT: ${PORT}`)})
