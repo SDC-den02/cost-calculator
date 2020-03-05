@@ -1,5 +1,5 @@
 # What image do you want to start building on?
-FROM node:latest
+FROM node:13.8.0-alpine3.10
 
 # Make a folder in your image where your app's source code can live
 RUN mkdir -p /src/app
@@ -11,10 +11,10 @@ WORKDIR /src/app
 COPY . /src/app
 
 # Does your app have any dependencies that should be installed?
-RUN yarn install
+RUN npm install
 
 # What port will the container talk to the outside world with once created?
-EXPOSE 3000
+EXPOSE 3001
 
 # How do you start your app?
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "start" ]
